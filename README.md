@@ -8,7 +8,7 @@ As per our dataset contribution in our paper noted in Sec. 3.1, the annotated da
 
 # Codebase
 
-## Phase 1 (Segmentation and Clustering)
+## Segmentation and Clustering
 
 The repository is arranged so that can be easily reproducible into directories. The directory **Segmentation_and_clustering** contains all the code necessary to train and infer the segmentation and clustering section as noted in the paper. Here are some points as pre-requisites:
 
