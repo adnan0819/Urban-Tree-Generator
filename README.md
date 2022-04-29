@@ -8,9 +8,14 @@ As per our dataset contribution in our paper noted in Sec. 3.1, the annotated da
 
 # Codebase
 
-## Segmentation and Clustering
+## Segmentation and clustering
 
 The repository is arranged so that can be easily reproducible into directories. The directory **Segmentation_and_clustering** contains all the code necessary to train and infer the segmentation and clustering section as noted in the paper. Here are some points as pre-requisites:
+
+
+A sample of the annotation is shown below:
+
+![annotation sample](Annotation_Sample.png "Annotation Sample over Indianapolis (green = tree, red = grass")
 
 * Download the preprocessed training data from **redacted for anonymity**
 * Place the zip file inside the **Segmentation_and_clustering** directory and unzip
@@ -27,5 +32,8 @@ The directory **Localization** contains all the code necessary to train and infe
 * Simply run train_localization.py to train the cGAN model
 * Inference and usage of pre-trained models are commented inside train_localization.py
 
-With [Handlebars templates](http://handlebarsjs.com/),
+![segmentation model](48d_Segmentation_Model.png "48-dimensional Modified Unet Segmentation Model for Segmentation.")
+
+
+With [Handlebars templates](http://handlebarsjs.com/).
 
