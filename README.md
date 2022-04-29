@@ -6,16 +6,17 @@ This repository contains our dataset contribution and codebase to reproduce our 
 
 As per our dataset contribution in our paper noted in Sec. 3.1, the annotated dataset of four cities (Chicago, Indianapolis, Austin, and Lagos) into three classes - tree, grass, others can be downloaded from **[redacted for anonymity]**.
 
+
+A sample of the annotation is shown below:
+
+![annotation sample](Annotation_Sample.png "Annotation Sample over Indianapolis (green = tree, red = grass")
+
 # Codebase
 
 ## Segmentation and clustering
 
 The repository is arranged so that can be easily reproducible into directories. The directory **Segmentation_and_clustering** contains all the code necessary to train and infer the segmentation and clustering section as noted in the paper. Here are some points as pre-requisites:
 
-
-A sample of the annotation is shown below:
-
-![annotation sample](Annotation_Sample.png "Annotation Sample over Indianapolis (green = tree, red = grass")
 
 * Download the preprocessed training data from **[redacted for anonymity]**
 * Place the zip file inside the **Segmentation_and_clustering** directory and unzip
