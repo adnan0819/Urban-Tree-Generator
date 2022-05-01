@@ -49,4 +49,4 @@ For the model of our localization network (Sec. 4) please see the implementatati
 
 ![localization model](cGAN_Model.png "Conditional GAN Model for  Localization.")
 
-
+Ref. Tensorflow [cGAN network](https://www.tensorflow.org/tutorials/generative/pix2pix_files/output_dIbRPFzjmV85_0.png). 
