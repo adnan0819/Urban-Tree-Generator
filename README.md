@@ -28,7 +28,7 @@ The repository is arranged so that can be easily reproducible into directories. 
 * Place the zip file inside the ```Segmentation_and_clustering``` directory and unzip
 * A directory called ```Data``` will be created
 * Simply run ```python train.py``` to train
-* Inference and usage of pre-trained models are commented inside ```train.py```
+* Inference and usage of pre-trained models are documented and commented inside ```train.py```
 
 ## Localization
 
@@ -37,7 +37,7 @@ The directory ```Localization``` contains all the code necessary to train and in
 * Download the preprocessed training data from **[redacted for anonymity]**
 * Place the zip file inside the ```Localization``` directory and unzip
 * Simply run ```python train_localization.py``` to train the cGAN model
-* Inference and usage of pre-trained models are commented inside ```train_localization.py```
+* Inference and usage of pre-trained models are documented and commented inside ```train_localization.py```. 
 
 # Model Architectures
 
