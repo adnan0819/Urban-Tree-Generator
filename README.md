@@ -39,10 +39,13 @@ The directory ```Localization``` contains all the code necessary to train and in
 * Simply run ```python train_localization.py``` to train the cGAN model
 * Inference and usage of pre-trained models are commented inside train_localization.py
 
+# Model Architectures
+
+Below is our deep learning model for Segmentation of trees (Sec 3).
+
 ![segmentation model](48d_Segmentation_Model.png "48-dimensional Modified Unet Segmentation Model for Segmentation.")
 
-
-For the model of our localization network please see the implementatation inside ```train_localization.py``` which is inspired by the standard Tensorflow [cGAN network](https://www.tensorflow.org/tutorials/generative/pix2pix_files/output_dIbRPFzjmV85_0.png). The figure is reproduced below.
+For the model of our localization network (Sec. 4) please see the implementatation inside ```train_localization.py``` which is inspired by the standard Tensorflow [cGAN network](https://www.tensorflow.org/tutorials/generative/pix2pix_files/output_dIbRPFzjmV85_0.png). The figure is reproduced below.
 
 ![localization model](cGAN_Model.png "Conditional GAN Model for  Localization.")
 
