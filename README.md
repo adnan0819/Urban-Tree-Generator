@@ -7,9 +7,9 @@ This repository contains our dataset contribution and codebase to reproduce our 
 As per our dataset contribution in our paper noted in Sec. 3.1, the annotated dataset of four cities (Chicago, Indianapolis, Austin, and Lagos) into three classes - tree, grass, others can be downloaded from **[redacted for anonymity]**.
 
 
-A sample of the annotation is shown below:
+A sample of the annotation of Indianapolis is shown below (green = tree, red = grass):
 
-![annotation sample](Annotation_Sample.png "Annotation Sample over Indianapolis (green = tree, red = grass")
+![annotation sample](Annotation_Sample.jpg "Annotation Sample over Indianapolis (green = tree, red = grass)")
 
 # Codebase
 
