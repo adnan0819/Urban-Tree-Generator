@@ -37,7 +37,7 @@ The directory ```Localization``` contains all the code necessary to train and in
 * Download the preprocessed training data from **[redacted for anonymity]**
 * Place the zip file inside the ```Localization``` directory and unzip
 * Simply run ```python train_localization.py``` to train the cGAN model
-* Inference and usage of pre-trained models are commented inside train_localization.py
+* Inference and usage of pre-trained models are commented inside ```train_localization.py```
 
 # Model Architectures
 
