@@ -7,33 +7,28 @@ from tensorflow.keras.callbacks import History
 import tensorflow as tf
 import matplotlib.pyplot as plt 
 from tensorflow.keras import backend as K
-#from mode.config import *
-#from csvrecord import * 
 from pathlib import Path
 from tensorflow.keras.callbacks import ModelCheckpoint, LearningRateScheduler, ReduceLROnPlateau, CSVLogger
 import segmentation_models as sm
 from keras.callbacks import ReduceLROnPlateau
 from keras.utils.generic_utils import get_custom_objects
 
-#arg = command_arguments()
 
 
 batch_size = 16
-steps_per_epoch = 4397 # the 10 is just for testing - actually make it 4397
+steps_per_epoch = 4397 
 epochs = 300
 save_result_folder = './data/results/'
 csvfilename = './history.csv'
 
 '''
-#model_name= PUT PATH OF PRETRAINED MODEL HERE IF PRETRAINED MODEL IS USED
+#model_name= IF PRETRAINED MODEL IS USED, PUT PATH OF PRETRAINED MODEL HERE 
 '''
 
 plt_save_name = './plot_train.png'
 val_plt_name = './plot_val.png'
 img_num = 31278
 filenum = 7040
-
-#augs 
 
 rotation_range = 0.2
 width_shift_range = 0.05
@@ -48,14 +43,11 @@ data_gen_args = dict(
                     rotation_range=rotation_range,
                     width_shift_range=width_shift_range,
                     height_shift_range=height_shift_range,
-                    #shear_range=0.05,
-                    #zoom_range=zoom_range,
                     horizontal_flip=horizontal_flip,
                     fill_mode=fill_mode,
                     cval=0)
 
 
-#draw the training process of every epoch
 def show_train_history(train_history, train, loss, plt_save_name=plt_save_name):
     plt.plot(train_history.history['acc'])
     plt.plot(train_history.history['loss'])
@@ -66,7 +58,7 @@ def show_train_history(train_history, train, loss, plt_save_name=plt_save_name):
     plt.savefig(plt_save_name)
 
 
-##### training
+# training and validation generators
 myGene = trainGenerator()
 valGen = valGenerator()
 
@@ -94,33 +86,25 @@ rlrop = ReduceLROnPlateau(monitor='val_loss', factor=0.2, patience=5)
 
 
 training = model.fit_generator(myGene, validation_data=valGen, validation_steps=620,steps_per_epoch=steps_per_epoch, epochs=epochs, callbacks=[csv_logger , csv_logger2 , model_checkpoint, rlrop])
-#####
 
 
-##### inference
+##### infer
 model = load_model(model_name)
 testGene = testGenerator(test_img_path)
-#testGene_for_eval = testGenerator_for_evaluation(test_img_path)
 results = model.predict_generator(testGene, img_num, verbose=1)
-#loss, acc = model.evaluate_generator(testGene_for_eval, steps=img_num, verbose=1)
-#print("test loss:",loss,"  test accuracy:", acc)
 #####
 
 
-##### draw your inference results
 if not os.path.exists(save_result_folder):
     os.makedirs(save_result_folder)
 
 saveResult( save_result_folder, results)
-#####
 
 
-##### Record every command params of  training
 if (os.path.isfile(csvfilename)!=True):
     csv_create(csvfilename, filenum, batch_size, steps_per_epoch, epochs, learning_rate, learning_decay_rate, rotation_range)
 else:
     csv_append(csvfilename, filenum, batch_size, steps_per_epoch, epochs, learning_rate, learning_decay_rate, rotation_range)
-#####
 
 
 K.clear_session()

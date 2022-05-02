@@ -13,17 +13,16 @@ import segmentation_models as sm
 from keras.callbacks import ReduceLROnPlateau
 from keras.utils.generic_utils import get_custom_objects
 
-#arg = command_arguments()
 
 
 batch_size = 16
-steps_per_epoch = 4397 # the 10 is just for testing - actually make it 4397
+steps_per_epoch = 4397 
 epochs = 300
 save_result_folder = './data/results/'
 csvfilename = './history.csv'
 
 '''
-model_name= PUT PATH OF PRETRAINED MODEL HERE IF PRETRAINED MODEL IS USED
+model_name= IF PRETRAINED MODEL IS USED, PUT PATH OF PRETRAINED MODEL HERE 
 '''
 
 data_gen_args = dict(
@@ -32,14 +31,11 @@ data_gen_args = dict(
                     rotation_range=rotation_range,
                     width_shift_range=width_shift_range,
                     height_shift_range=height_shift_range,
-                    #shear_range=0.05,
-                    #zoom_range=zoom_range,
                     horizontal_flip=horizontal_flip,
                     fill_mode=fill_mode,
                     cval=0)
 
 
-#draw the training process of every epoch
 def show_train_history(train_history, train, loss, plt_save_name=plt_save_name):
     plt.plot(train_history.history['acc'])
     plt.plot(train_history.history['loss'])
@@ -58,25 +54,16 @@ model.load_weights(model_name)
 
 
 
-##### inference
+# inference
 model = load_model(model_name)
 testGene = testGenerator(test_img_path)
-#testGene_for_eval = testGenerator_for_evaluation(test_img_path)
 results = model.predict_generator(testGene, img_num, verbose=1)
-#loss, acc = model.evaluate_generator(testGene_for_eval, steps=img_num, verbose=1)
-#print("test loss:",loss,"  test accuracy:", acc)
-#####
 
 
-##### draw inference results
 if not os.path.exists(save_result_folder):
     os.makedirs(save_result_folder)
 
 saveResult( save_result_folder, results)
-#####
-
-
-
 
 K.clear_session()
     
