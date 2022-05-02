@@ -6,7 +6,7 @@ import time
 from matplotlib import pyplot as plt
 from IPython import display
 
-PATH = '/home/afiroze/data/Full_maps_rules_corner/train_data/'
+PATH = './Phase2_Train_Data/'
 
 BUFFER_SIZE = 235200
 BATCH_SIZE = 32
@@ -14,8 +14,7 @@ IMG_WIDTH = 256
 IMG_HEIGHT = 256
 
 def load(image_file):
-  #print('image file is ', end='')
-  #print(str(image_file))
+ 
     
   image = tf.io.read_file(image_file)
   image = tf.image.decode_jpeg(image)
@@ -46,7 +45,6 @@ def random_crop(input_image, real_image):
 
   return cropped_image[0], cropped_image[1]
 
-# normalizing the images to [-1, 1]
 
 def normalize(input_image, real_image):
   input_image = (input_image / 127.5) - 1
@@ -56,13 +54,13 @@ def normalize(input_image, real_image):
 
 @tf.function()
 def random_jitter(input_image, real_image):
-  # resizing to 286 x 286 x 3
+
   input_image, real_image = resize(input_image, real_image, 286, 286)
 
-  # randomly cropping to 256 x 256 x 3
   input_image, real_image = random_crop(input_image, real_image)
 
   if tf.random.uniform(()) > 0.5:
+    
     # random mirroring
     input_image = tf.image.flip_left_right(input_image)
     real_image = tf.image.flip_left_right(real_image)
@@ -71,7 +69,6 @@ def random_jitter(input_image, real_image):
 
 def load_image_train(image_file):
   input_image, real_image = load(image_file)
-  #print(image_file)
   input_image, real_image = random_jitter(input_image, real_image)
   input_image, real_image = normalize(input_image, real_image)
 
@@ -89,7 +86,7 @@ def load_image_test(image_file):
 train_dataset = tf.data.Dataset.list_files(PATH+'train/*.jpg')
 train_dataset = train_dataset.map(load_image_train,
                                   num_parallel_calls=tf.data.AUTOTUNE)
-#train_dataset = train_dataset.shuffle(BUFFER_SIZE)
+
 train_dataset = train_dataset.batch(BATCH_SIZE)
 
 test_dataset = tf.data.Dataset.list_files(PATH+'test/*.jpg')
@@ -194,23 +191,10 @@ LAMBDA = 100
 def generator_loss(disc_generated_output, gen_output, target):
   gan_loss = loss_object(tf.ones_like(disc_generated_output), disc_generated_output)
 
-  # mean absolute error
-  #l1_loss = tf.reduce_mean(tf.abs(target - gen_output))
-  #l1_loss = tf.reduce_mean(tf.abs(1-(tf.reduce_mean(tf.image.ssim(gen_output, target, 2.0)))))
-  #l1_loss = -1.0 * tf.reduce_mean(tf.image.ssim(gen_output, target, 2.0))
-  #l1_loss =  tf.reduce_mean(1-abs(tf.image.ssim(gen_output, target, 2.0)))
   
-  
- # MSSIM=tf.reduce_mean(tf.image.ssim_multiscale(gen_output, target, 1.0,filter_size=16,filter_sigma=16,k1=0.000000001, k2=.00000000001))
-  
- # l1_loss= 1.0 - MSSIM
-
-  
-  #SSIM=tf.reduce_mean(tf.image.ssim(gen_output, target, 2.0,filter_size=16,filter_sigma=16,k1=0.000000001, k2=.00000000001))
   SSIM=tf.reduce_mean(tf.image.ssim(gen_output, target, 2.0))
   l1_loss= 1.0 - ((1.0 + SSIM ) / 2.0)
 
-  #tf.print(l1_loss)
 
   total_gen_loss = gan_loss + (LAMBDA * l1_loss)
 
@@ -260,7 +244,7 @@ def discriminator_loss(disc_real_output, disc_generated_output):
 generator_optimizer = tf.keras.optimizers.Adam(2e-4, beta_1=0.5)
 discriminator_optimizer = tf.keras.optimizers.Adam(2e-7, beta_1=0.5)
 
-checkpoint_dir = './training_checkpoints_corner'
+checkpoint_dir = './training_checkpoints/'
 checkpoint_prefix = os.path.join(checkpoint_dir, "ckpt")
 checkpoint = tf.train.Checkpoint(generator_optimizer=generator_optimizer,
                                  discriminator_optimizer=discriminator_optimizer,
@@ -278,7 +262,6 @@ def generate_images(model, test_input, tar,epoch):
   for i in range(3):
     plt.subplot(1, 3, i+1)
     plt.title(title[i])
-    # getting the pixel values between [0, 1] to plot it.
     plt.imshow(display_list[i] * 0.5 + 0.5)
     tf.keras.preprocessing.image.save_img('./tmp_corner/'+str(epoch)+'_'+str(i)+'.png',display_list[i])
     plt.axis('off')
@@ -308,7 +291,7 @@ def train_step(input_image, target, epoch):
   generator_gradients = gen_tape.gradient(gen_total_loss,
                                           generator.trainable_variables)
   
-  #update discriminator every 5 epochs
+  #update discriminator every 4 epochs
   
         
   discriminator_gradients = disc_tape.gradient(disc_loss,
@@ -348,7 +331,7 @@ def fit(train_ds, epochs, test_ds):
       train_step(input_image, target, epoch)
     print()
 
-    # saving (checkpoint) the model every 20 epochs
+    # saving (checkpoint) the model every 5 epochs
     if (epoch + 1) % 5 == 0:
       checkpoint.save(file_prefix = checkpoint_prefix)
 

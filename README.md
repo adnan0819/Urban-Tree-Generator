@@ -37,7 +37,7 @@ The directory ```Localization``` contains all the code necessary to train and in
 
 
 * Clone into this directory.
-* Download the preprocessed training data from [here](https://drive.google.com/file/d/1K7z3O9R7Jixt52E18UMg5Q1oGuWvUNca/view?usp=sharing). 
+* Download the preprocessed training data from [here](https://drive.google.com/file/d/1HtExOOsc-o9ys7ZhNAWuvgRZYVMI4WJ7/view?usp=sharing). 
 * Place the zip file inside the ```Localization``` directory and unzip
 * Simply run ```./Localization/python train_localization.py``` to train the cGAN model
 * Inference and usage of pre-trained models are documented and commented inside ```train_localization.py```. 
@@ -54,6 +54,8 @@ For the model of our localization network (Sec. 4) please see the implementatati
 
 Ref. Tensorflow [cGAN network](https://www.tensorflow.org/tutorials/generative/pix2pix_files/output_dIbRPFzjmV85_0.png). 
 
-An illustrative example of our Localization output (bottom row) and ground truth (top row) is shown below in a segment of Chicago.
+# Localization Output Example
+
+An illustrative example of our Localization output (bottom row) and ground truth (top row) is shown below in a segment of Chicago (see Sec. 4 and Sec. 5 of our paper for more results and examples).
 
 ![Localization example](Localization_Example.jpg "Localization output (bottom row) and ground truth (top row).")
