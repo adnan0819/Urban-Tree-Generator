@@ -28,8 +28,8 @@ The repository is arranged so that can be easily reproducible into directories. 
 * Download the preprocessed training data from [here](https://drive.google.com/file/d/1sqaWBiUmq9EEZsVI9Cp1S_y4iRFx02uy/view?usp=sharing). 
 * Place the zip file inside the ```Segmentation_and_clustering``` directory and unzip
 * A directory called ```Data``` will be created
-* Simply run ```./Segmentation_and_clustering/python train.py``` to train
-* Inference and usage of pre-trained models are documented and commented inside ```train.py```
+* Simply run ```./Segmentation_and_clustering/python main.py``` to train
+* Inference and usage of pre-trained models are documented and commented inside ```main.py```
 
 ## Localization
 
