@@ -4,7 +4,7 @@ This repository contains our dataset contribution and codebase to reproduce our 
 
 # Annotated Dataset
 
-As per our dataset contribution in our paper noted in Sec. 3.1, the annotated dataset of four cities (Chicago, Indianapolis, Austin, and Lagos) into three classes - tree, grass, others can be downloaded from **[redacted for anonymity]**.
+As per our dataset contribution in our paper noted in Sec. 3.1, the annotated dataset of four cities (Chicago, Indianapolis, Austin, and Lagos) into three classes - tree, grass, others can be downloaded from [here](https://drive.google.com/file/d/1vP6ajrXvKzAcc8qvRUP3ciJAuZbWP392/view?usp=sharing).
 
 
 A sample of the annotation of Indianapolis is shown below (green = tree, red = grass):
@@ -24,19 +24,22 @@ All the required libraries are enlisted in ```requirements.txt```. To directly i
 The repository is arranged so that can be easily reproducible into directories. The directory **Segmentation_and_clustering** contains all the code necessary to train and infer the segmentation and clustering section as noted in the paper. Here are some points as pre-requisites:
 
 
-* Download the preprocessed training data from **[redacted for anonymity]**
+* Clone into this directory.
+* Download the preprocessed training data from [here](https://drive.google.com/file/d/1sqaWBiUmq9EEZsVI9Cp1S_y4iRFx02uy/view?usp=sharing). 
 * Place the zip file inside the ```Segmentation_and_clustering``` directory and unzip
 * A directory called ```Data``` will be created
-* Simply run ```python train.py``` to train
+* Simply run ```./Segmentation_and_clustering/python train.py``` to train
 * Inference and usage of pre-trained models are documented and commented inside ```train.py```
 
 ## Localization
 
 The directory ```Localization``` contains all the code necessary to train and infer the localization  section as noted in the paper (Sec. 4). Here are some points as pre-requisites:
 
-* Download the preprocessed training data from **[redacted for anonymity]**
+
+* Clone into this directory.
+* Download the preprocessed training data from [here](https://drive.google.com/file/d/1K7z3O9R7Jixt52E18UMg5Q1oGuWvUNca/view?usp=sharing). 
 * Place the zip file inside the ```Localization``` directory and unzip
-* Simply run ```python train_localization.py``` to train the cGAN model
+* Simply run ```./Localization/python train_localization.py``` to train the cGAN model
 * Inference and usage of pre-trained models are documented and commented inside ```train_localization.py```. 
 
 # Model Architectures
@@ -50,3 +53,7 @@ For the model of our localization network (Sec. 4) please see the implementatati
 ![localization model](cGAN_Model.png "Conditional GAN Model for  Localization.")
 
 Ref. Tensorflow [cGAN network](https://www.tensorflow.org/tutorials/generative/pix2pix_files/output_dIbRPFzjmV85_0.png). 
+
+An illustrative example of our Localization output (bottom row) and ground truth (top row) is shown below in a segment of Chicago.
+
+![Localization example](Localization_Example.jpg "Localization output (bottom row) and ground truth (top row).")
