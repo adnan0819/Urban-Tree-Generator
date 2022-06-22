@@ -1,6 +1,6 @@
 # Urban Tree Generator: Spatio-Temporal and Generative Deep Learning for Urban Tree Localization and Modeling 
 
-This repository contains our dataset contribution and codebase to reproduce our paper titled **Urban Tree Generator: Spatio-Temporal and Generative Deep Learning for Urban Tree Localization and Modeling** in CGI 2022 (published in The Visual Computer journal). 
+This repository contains our dataset contribution and codebase to reproduce our paper titled "**Urban Tree Generator: Spatio-Temporal and Generative Deep Learning for Urban Tree Localization and Modeling**" in CGI 2022 (published in The Visual Computer journal). 
 
 **Read our paper [here](https://link.springer.com/article/10.1007/s00371-022-02526-x).**
 
